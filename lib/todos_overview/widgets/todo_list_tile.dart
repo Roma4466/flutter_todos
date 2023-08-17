@@ -42,9 +42,9 @@ class TodoListTile extends StatelessWidget {
           style: !todo.isCompleted
               ? null
               : TextStyle(
-                  color: captionColor,
-                  decoration: TextDecoration.lineThrough,
-                ),
+            color: captionColor,
+            decoration: TextDecoration.lineThrough,
+          ),
         ),
         subtitle: Text(
           todo.description,

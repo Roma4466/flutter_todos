@@ -11,7 +11,7 @@ class TodosOverviewFilterButton extends StatelessWidget {
     final l10n = context.l10n;
 
     final activeFilter =
-        context.select((TodosOverviewBloc bloc) => bloc.state.filter);
+    context.select((TodosOverviewBloc bloc) => bloc.state.filter);
 
     return PopupMenuButton<TodosViewFilter>(
       shape: const ContinuousRectangleBorder(
