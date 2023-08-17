@@ -16,9 +16,9 @@ class StatsBloc extends Bloc<StatsEvent, StatsState> {
   final TodosRepository _todosRepository;
 
   Future<void> _onSubscriptionRequested(
-      StatsSubscriptionRequested event,
-      Emitter<StatsState> emit,
-      ) async {
+    StatsSubscriptionRequested event,
+    Emitter<StatsState> emit,
+  ) async {
     emit(state.copyWith(status: StatsStatus.loading));
 
     await emit.forEach<List<Todo>>(
