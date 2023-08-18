@@ -1,5 +1,5 @@
-name: flutter_firebase_login
-description: A new Flutter project.
+name: flutter_todos
+description: An example todos app that showcases bloc state management patterns.
 version: 1.0.0+1
 publish_to: none
 
@@ -7,34 +7,44 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  authentication_repository:
-    path: packages/authentication_repository
-  bloc: ^8.1.0
-  equatable: ^2.0.3
+  bloc: ^8.1.1
+  equatable: ^2.0.5
+  firebase_auth: ^4.7.3
   firebase_core: ^2.1.0
-  flow_builder: ^0.0.9
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
+  flutter_launcher_icons: ^0.13.1
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.18.0
+  local_storage_todos_api:
+    path: packages/local_storage_todos_api
+  todos_api:
+    path: packages/todos_api
+  todos_repository:
+    path: packages/todos_repository
   font_awesome_flutter: ^10.1.0
   form_inputs:
     path: packages/form_inputs
+  authentication_repository:
+    path: packages/authentication_repository
   formz: ^0.6.0
   google_fonts: ^4.0.0
   meta: ^1.7.0
+  flow_builder: ^0.0.9
+  google_sign_in: ^6.1.4
+
 
 dev_dependencies:
-  bloc_test: ^9.0.0
+  bloc_test: ^9.1.0
   flutter_test:
     sdk: flutter
-  mocktail: ^1.0.0
+  mockingjay: ^0.3.0
+  mocktail: ^0.3.0
 
 flutter:
   uses-material-design: true
+  generate: true
   assets:
     - assets/
-
-dependency_overrides:
-  bloc: ^8.1.0
-  bloc_test: ^9.1.0
-  flutter_bloc: ^8.1.1

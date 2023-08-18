@@ -1,6 +1,10 @@
+import 'package:authentication_repository/authentication_repository.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_todos/bootstrap.dart';
 import 'package:local_storage_todos_api/local_storage_todos_api.dart';
+import 'package:todos_repository/todos_repository.dart';
+
+import 'app/view/app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -9,5 +13,15 @@ Future<void> main() async {
     plugin: await SharedPreferences.getInstance(),
   );
 
-  bootstrap(todosApi: todosApi);
+  final todosRepository = TodosRepository(todosApi: todosApi);
+
+  await Firebase.initializeApp();
+
+  final authenticationRepository = AuthenticationRepository();
+  await authenticationRepository.user.first;
+
+  runApp(App(
+    authenticationRepository: authenticationRepository,
+    todosRepository: todosRepository,
+  ));
 }
