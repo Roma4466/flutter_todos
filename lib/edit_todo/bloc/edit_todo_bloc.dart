@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:todos_repository/todos_repository.dart';
 
 part 'edit_todo_event.dart';
+
 part 'edit_todo_state.dart';
 
 class EditTodoBloc extends Bloc<EditTodoEvent, EditTodoState> {
@@ -42,17 +43,21 @@ class EditTodoBloc extends Bloc<EditTodoEvent, EditTodoState> {
     EditTodoSubmitted event,
     Emitter<EditTodoState> emit,
   ) async {
-    emit(state.copyWith(status: EditTodoStatus.loading));
-    final todo = (state.initialTodo ?? Todo(title: '')).copyWith(
-      title: state.title,
-      description: state.description,
-    );
+    if (state.title.replaceAll(RegExp(r'\s+'), '').isNotEmpty) {
+      emit(state.copyWith(status: EditTodoStatus.loading));
+      final todo = (state.initialTodo ?? Todo(title: '')).copyWith(
+        title: state.title,
+        description: state.description,
+      );
 
-    try {
-      await _todosRepository.saveTodo(todo);
+      try {
+        await _todosRepository.saveTodo(todo);
+        emit(state.copyWith(status: EditTodoStatus.success));
+      } catch (e) {
+        emit(state.copyWith(status: EditTodoStatus.failure));
+      }
+    } else {
       emit(state.copyWith(status: EditTodoStatus.success));
-    } catch (e) {
-      emit(state.copyWith(status: EditTodoStatus.failure));
     }
   }
 }
